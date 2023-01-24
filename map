@@ -1,0 +1,103 @@
+#include <iostream>
+#include<vector>
+#include<map>
+
+using namespace std;
+
+int main() 
+{
+     map<string,int> mp; //default sorted in asending order.It uses less<string> comparator
+
+     //to sort in desending order
+     //map<string,int,greater<string>> mp;
+
+     mp["pavan"] = 1;
+     mp.insert({"rahul",34});
+     mp.insert(make_pair("amit",45));
+
+     //display 
+     for(auto &ele:mp)
+     {
+         cout<<ele.first<<" "<<ele.second<<endl;
+     }
+
+     //we can only modify the value not key
+     mp["pavan"] = 456; // returns reference. pavan modified from 1 to 456
+
+     //mp.clear();  //deletes all ele from the map
+
+     //search for the element 
+     if(mp.find("pavan") != mp.end()) //found
+        cout<<"ele found "<<endl;
+     else
+        cout<<"ele not found"<<endl;   
+
+     //map::erase() is a built-in function in C++ STL that 
+     //is used to erase elements from the container
+     mp.erase("pavan"); //by passing the key 
+     for(auto &ele:mp)
+         cout<<ele.first<<" "<<ele.second<<endl<<endl<<endl;
+
+
+     //erase by passing the iterator
+     auto it = mp.find("amit");
+     mp.erase(it);  
+     for(auto &ele:mp)
+        cout<<ele.first<<" "<<ele.second<<endl; 
+
+     //erase based on range 
+     /*
+       map_name.erase(iterator position1, iterator position2)
+       Parameters: The function accepts two mandatory parameters which are described below: 
+
+        position1 – specifies the iterator that is the reference 
+        to the element from which removal is to be done.
+        position2 – specifies the iterator that is the reference 
+        to the element up to which removal is to be done.
+     */ 
+
+        map<int, int> m;
+        // insert elements in random order
+        m.insert({ 2, 30 });
+        m.insert({ 1, 40 });
+        m.insert({ 3, 60 });
+        m.insert({ 2, 20 });
+        m.insert({ 5, 50 });  
+
+        auto it1 = m.find(2);
+        auto it2 = m.find(5);
+
+        cout<<"before erase"<<endl;
+        for(auto &ele:m)
+           cout<<ele.first<<" "<<ele.second<<endl;
+           
+        //output of above is 
+        before erase
+        1 40
+        2 30
+        3 60
+        5 50
+
+        m.erase(it1,it2);
+
+        cout<<"after erase"<<endl;
+        for(auto &ele:m)
+           cout<<ele.first<<" "<<ele.second<<endl;
+           
+           //output of above is 
+           after erase
+          1 40
+          5 50
+
+      cout<<"number of ele in map "<<m.size()<<endl;  
+      
+      if(m.empty())
+            cout<<"map is empty"<<endl;
+      else 
+            cout<<"map is not empty"<<endl; 
+            
+     max_size() – Returns the maximum number of elements that the map can hold.
+          
+
+
+}
