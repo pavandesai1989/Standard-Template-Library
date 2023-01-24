@@ -159,6 +159,53 @@ int main()
      ***************
      
      *******Using map on User Defined objects ******
+     class user
+     {
+         public:
+            int age;
+            string name;
+
+         public:
+            user(int age,string name):age(age),name(name){
+
+            }  
+
+            int getage()const
+            {
+                return age;
+            }
+
+            string getname()const 
+            {
+                return name;
+            }
+
+            bool operator<(const user &ob)const 
+            {
+                 return this->age<ob.age;
+            }
+     };
+
+
+     int main()
+     {
+         map<user,int> mp;
+
+         mp.insert({user(25,"pavan"),1});
+         mp.insert({user(45,"amit"),5});
+         mp.insert({user(65,"chotu"),1});
+
+
+         map<user,int>::iterator it=mp.begin();
+         for(;it!=mp.end();it++)
+         {
+             cout<<it->first.getage()<<"  ";
+
+             cout<<it->first.getname()<<endl;//<<"::"<<it->first.getname()<<endl;
+         }
+     }
+     
+     *******************************
      
           
 
