@@ -10,10 +10,44 @@ int main()
 
      //to sort in desending order
      //map<string,int,greater<string>> mp;
+     
+     /*
+     insert return value  ******IIIIMP
+     
+     Return Value: The function returns a pair, with its member pair::first set to an iterator pointing to either the newly inserted element or to the          element with an equivalent key in the map. The pair::second element in the pair is set to true if a new element was inserted or false if an                equivalent key already existed.
+     
+    */
+    
+    example as below 
+    
+           map<int, int> m;
+        // insert elements in random order
+        m.insert({ 2, 30 });
+        m.insert({ 1, 40 });
+        m.insert({ 3, 60 });
 
+        if(m.insert({2,56}).second == true)  
+           cout<<"inserted"<<endl;
+        else 
+           cout<<" not inserted"<<endl;  
+           
+           
+       //search in map by value 
+       map<int,int>::iterator it = m.begin();
+       while(it !=m.end())
+       {
+           if(it->second == 40)
+              cout<<"found"<<endl;
+
+           it++;   
+       } 
+           
+     
      mp["pavan"] = 1;
      mp.insert({"rahul",34});
      mp.insert(make_pair("amit",45));
+     
+     
 
      //display 
      for(auto &ele:mp)
@@ -97,6 +131,35 @@ int main()
             cout<<"map is not empty"<<endl; 
             
      max_size() – Returns the maximum number of elements that the map can hold.
+     
+     
+     **********//using the external sorting criteria************
+      class compa
+     {
+         public:
+         bool operator()(const string &s1,const string &s2)const
+         {
+             return (s1>s2);
+         }
+     };
+
+     int main() 
+     {
+
+        map<string,int,compa> mp;
+
+        mp.insert({"amit",23});
+        mp.insert({"fool",77});
+        mp.insert({"base",33});
+
+        for(auto ele:mp)
+           cout<<ele.first<<" "<<ele.second<<endl;
+
+     }
+     ***************
+     
+     *******Using map on User Defined objects ******
+     
           
 
 
