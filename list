@@ -1,0 +1,10 @@
+Lists are sequence containers that allow non-contiguous memory allocation.
+As compared to vector, the list has slow traversal, but once a position has been found, insertion and deletion are quick. 
+Normally, when we say a List, we talk about a doubly linked list. 
+For implementing a singly linked list, we use a forward list. 
+
+Below is the program to show the working of some functions of List: 
+
+This has additional push_back and pop_back to pop_front and push_front.
+front() and back()
+insert erase assign 
