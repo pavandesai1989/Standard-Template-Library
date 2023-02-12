@@ -1,0 +1,12 @@
+To handle this duplication unordered_multiset should be used, it can store duplicate elements also.
+ Internally when an existing value is inserted, the data structure increases its count which is associated with each value.
+ As count of each value is stored in unordered_multiset, it takes more space than unordered_set (if all values are distinct)*****
+ 
+ The internal implementation of unordered_multiset is same as that of unordered_set and also uses hash table for searching, just the count value is associated with each value in former one
+ 
+ 
+ 
+ 
+ ********unordered_multimap*****
+ unordered_multimap in STL are associative containers like unordered maps where each element consists of a key value and a mapped value, the only difference is unordered multimaps can store duplicate elements
+ 
