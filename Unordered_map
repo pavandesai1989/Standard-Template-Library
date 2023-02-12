@@ -1,0 +1,162 @@
+Unordered_map provides a functionality of map i.e. it store the elements in key value pair and with unique key only.
+Unordered_map internally uses the hashing to achieve this. It internally uses a hash table to implement this hashing feature.
+In an unordered_map elements are stored in a key value pair combination. But elements are stored in arbitrary order unlike associative containers where elements were stored in sorted order of keys.
+
+
+How unordered_map store elements?
+The reason because unordered_map does the hashing i.e. whenever we try to insert an element in a unordered_map, it internally does the following steps,
+
+First hash of key is calculated using Hasher function and then on the basis of that hash an appropriate bucket is choose.
+Once bucket is identified then it compares the key with key of each element inside the bucket using Comparator function to identify if given element is a duplicate or not.
+If its not a duplicate then only it stores the element in that bucket
+Therefore, there is no specific order in which elements are stored internally.
+
+
+
+
+#include<iostream>
+#include<unordered_map>
+
+using namespace std;
+int main()
+{
+   unordered_map<string,int> umap;
+
+   umap.insert(make_pair("pavan",12));
+   umap.insert(make_pair("rahul",34));
+
+   //uisng the initializer
+   unordered_map<string,int>  umap2 = {{"rohan",44},{"mahesh",88}};
+
+   for(auto it:umap)
+   {
+       cout<<it.first<<" "<<it.second<<endl;
+   }
+
+   umap["pavan"] = 333; //overwrite the value 
+
+   if(umap.insert({"ravan",33}).second == true)
+       {
+           cout<<"ele added"<<endl;
+           
+       }
+   else
+        cout<<"ele present"<<endl;     
+
+   //searching in map
+     if(umap.find("pavan") != umap.end())
+         cout<<"ele found"<<endl;
+
+      //erase
+     umap.erase("pavan");
+
+     for(auto ele:umap)
+         cout<<ele.first<<" "<<ele.second<<endl;    
+
+     cout<<"size is "<<umap.size()<<endl;    
+
+     return 0;
+}
+
+
+*********unordered map on user defined object*****
+#include<iostream>
+#include<unordered_map>
+
+using namespace std;
+
+class Test
+{
+    public:
+       string first;
+       string second;
+
+    public:
+       Test(string s1,string s2):first(s1),second(s2){}
+
+       bool operator==(const Test &ob)const
+       {
+           return (first == ob.first && second == ob.second);
+       }   
+
+};
+
+class myhash
+{
+    public:
+       size_t operator()(const Test& ob)const
+       {
+           return ob.first.length() + ob.second.length();
+       }
+
+};
+
+
+int main()
+{
+   Test t1({"pavan","desai"});
+   Test t2({"rahul","deshpande"});
+
+   unordered_map<Test,int,myhash> umap;
+
+   umap[t1] = 13;
+   umap[t2] = 45;
+
+
+   for(auto ele:umap)
+       cout<<ele.first.first<<" "<<ele.first.second<<endl;
+   return 0;
+}
+
+**************
+#include<iostream>
+#include<unordered_map>
+
+using namespace std;
+
+class Test
+{
+    public:
+       string first;
+
+    public:
+       Test(string s1):first(s1){}
+
+       bool operator==(const Test &ob)const
+       {
+           return (first == ob.first);
+       }   
+
+};
+
+class myhash
+{
+    public:
+       size_t operator()(const Test& ob)const
+       {
+           return ob.first.length();
+       }
+
+};
+
+
+int main()
+{
+   Test t1("pavan");
+   Test t2("rahul");
+
+   unordered_map<Test,int,myhash> umap;
+
+   umap[t1] = 13;
+   umap[t2] = 45;
+
+
+   for(auto ele:umap)
+       cout<<ele.first.first<<" "<<ele.second<<endl;
+   return 0;
+}
+
+
+
+
+
