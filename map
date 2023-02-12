@@ -1,3 +1,25 @@
+std::map is an associative container that store elements in key-value pair.
+*******Benefits of using std::map :**********
+It stores only unique keys and that too in sorted order based on its assigned sorting criteria.
+As keys are in sorted order therefore searching element in map through key is very fast i.e. it takes logarithmic time.
+In std::map there will be only one value attached with the every key.
+std::map can be used as associative arrays.
+It might be implemented using balanced binary trees.
+
+
+
+std::map has Operator[] i.e.
+
+mapped_type& operator[] (const key_type& k);
+operator [] works in Find or Create Mode i.e. when called with a key K, it will try to look for element with given key K and can go in below 2 directions i.e.
+
+If any element is found with key K, then it will return the reference of its value.
+But if there is no element in map with K, then it will create a new element in map with key K and assign default value of value_type in its value field. Then it will return the value of newly created element as reference.
+
+
+
+
+
 #include <iostream>
 #include<vector>
 #include<map>
