@@ -4,3 +4,121 @@
 3. An unordered set in STL is a container that stores unique elements in no particular order.
 4. Every operation on an unordered set takes O(1) complexity in the average case and takes O(n) in the worst case.
 
+*********ON USER DEFINED OBJECTS*******
+
+#include <bits/stdc++.h>
+using namespace std;
+//defined structure
+struct Test 
+{
+   int id;
+   bool operator==(const Test& t) const{
+      return (this->id == t.id);
+   }
+};
+//defined class for hash function
+class MyHashFunction 
+{
+   public:
+      size_t operator()(const Test& t) const{
+         return t.id;
+   }
+};
+int main()
+{
+   Test t1 = { 110 }, t2 = { 102 }, t3 = { 101 }, t4 = { 115 };
+   //defining unordered set
+   unordered_set<Test, MyHashFunction> us;
+   us.insert(t1);
+   us.insert(t2);
+   us.insert(t3);
+   us.insert(t4);
+   for (auto e : us) 
+   {
+      cout << e.id << " ";
+   }
+   return 0;
+}
+
+
+
+**************STD FUNCTIONS*****
+#include <iostream>
+#include<string>
+#include<forward_list>
+#include<unordered_set>
+using namespace std;
+
+class Test
+{
+    public:
+       int m_id;
+
+    public:
+       public:
+          Test(int v):m_id(v){}
+       bool operator==(const Test &ob)const
+       {
+           return (this->m_id == ob.m_id);
+       }   
+};
+
+class myhash
+{
+    public:
+       size_t operator()(const Test &ob)const{
+           return ob.m_id;
+       }
+};
+
+int main()
+{
+   Test t1 = { 110 }, t2 = { 102 }, t3 = { 101 }, t4 = { 115 };
+   //defining unordered set
+   unordered_set<Test> us;
+   us.insert(t1);
+   us.insert(t2);
+   us.insert(t3);
+   us.insert(t4);
+   for (auto e : us) 
+   {
+      cout << e.m_id << " ";
+   }
+      /*unordered_set<int> uset{1,2,3,4,4,5,5};
+
+      auto p = uset.insert(6);//pair<bool,unordered_set<int>::iterator>
+
+      if(p.second == true) 
+         cout<<"insert done"<<" ele is "<<*p.first<<endl;
+      else
+         cout<<"ele already present"<<endl;   
+
+      for(auto ele: uset)
+          cout<<ele<<" ";
+
+      //find
+      cout<<endl;
+      if(uset.find(8) == uset.end())
+          cout<<"ele not found "<<endl;   
+      
+      cout<<endl;
+      if(uset.find(5)!=uset.end())
+          cout<<"ele found"<<endl;   
+
+      if(uset.count(5) > 0)
+         cout<<"using count ele is present"<<endl;    
+
+      uset.erase(5);
+      for(auto ele: uset)
+          cout<<ele<<" ";   
+
+        uset.clear(); //delete all eles
+        cout<<"size is "<<uset.size()<<endl;   
+        */  
+}
+
+
+
+
+
+
