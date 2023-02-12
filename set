@@ -1,0 +1,97 @@
+std::set is an associative container and header that need to be include for it is,
+#include<set>
+
+******Benefits and Features of std::set:*****
+It’s doesn’t allow duplicate elements i.e. it only contains unique elements.
+Std::set can contain element of any specified type in template argument i.e.
+     std::set<int> // contains only int elements.
+     class Sample;
+     std::set<Sample> // contains only Sample class objects.
+std::set internally store elements in balanced binary tree.
+By default std::set uses the operator < for comparing two elements and but if user passes the external sorting criteria i.e. comparator then it uses that instead of default operator <.
+std::set will keep the inserted elements in sorted order based on the assigned sorting criteria i.e. either by default criteria operator < or by passed comparator (if passed).
+
+********** set on user defined classes*****
+If you want to use std::set with user defined classes and use default sorting criteria then overload operator < in the class.
+
+#include <iostream>
+#include<set>
+using namespace std;
+class Test
+{
+    private:
+      int m_id;
+
+    public:
+      Test(int val):m_id(val){}
+      bool operator<(const Test &ob)const
+      {
+          return m_id < ob.m_id;
+      } 
+
+      int getvalue()const
+      {
+           return m_id;
+      } 
+
+};
+
+int main() 
+{
+    Test ob1{23};
+    Test ob2{11};
+    Test ob3{14};
+
+    set<Test> mset;
+    mset.insert(ob1);
+    mset.insert(ob2);
+    mset.insert(ob3);
+
+    for(auto ele: mset)
+    {
+        cout<<ele.getvalue()<<endl;
+    }
+    cout<<endl;
+
+    return 0;
+}
+***************** common operations****
+#include<iostream>
+#include<set>
+
+using namespace std;
+
+
+int main()
+{
+   set<int,less<int>> mset = {1,2,3,4,5,5,6};  //uses the less<T> comparator by default 
+
+   //if you want to sort in the desedning order use below
+   set<int,greater<int>> mset2 = {1,1,2,3,3,3,4,5,78,90,33};
+
+   for(auto ele:mset)
+       cout<<ele<<" ";
+   
+   cout<<endl;
+   cout<<"size of the set is "<<mset.size()<<"."<<endl;  
+
+   //find
+   if(mset.find(2) != mset.end())
+       cout<<"ele found"<<endl;  
+
+   //erase
+    mset.erase(2);    
+    if(mset.find(2) != mset.end())
+       cout<<"ele found"<<endl;  
+    else
+       cout<<"ele not found"<<endl;   
+
+    //clear
+    mset.clear();
+
+    if(mset.empty())
+       cout<<"empty set"<<endl;   
+
+   return 0;
+}
+
