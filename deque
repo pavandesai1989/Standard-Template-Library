@@ -1,0 +1,21 @@
+Functions in Deque:
+push_back() – to insert an element at the end of the deque.
+deque<int> dq;
+dq.push_back(110);
+dq.push_back(220);
+push_front() – to insert an element at the front of the deque.
+deque<int> dq;
+dq.push_front(110);
+dq.push_front(220);
+pop_back() – deletes the last element of the deque.
+dq.pop_back();
+pop_front() – deletes the front element of the deque.
+dq.pop_front();
+front() – it gives a reference to the first element of the deque.
+dq.front();
+back() – it gives a reference to the last element of the deque.
+dq.back();
+size() – returns the number of elements on the deque.
+dq.size();
+empty() – to check if the deque is empty or not.
+dq.empty();
