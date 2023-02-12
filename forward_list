@@ -1,0 +1,44 @@
+Forward list in STL implements singly linked list. Introduced from C++11, forward list are more useful than other containers in insertion, removal, and moving operations (like sort) and allow time constant insertion and removal of elements. 
+It differs from the list by the fact that the forward list keeps track of the location of only the next element while the list keeps track of both the next and previous elements, thus increasing the storage space required to store each element. The drawback of a forward list is that it cannot be iterated backward and its individual elements cannot be accessed directly. 
+
+
+
+#include <iostream>
+#include<forward_list>
+using namespace std;
+
+int main() 
+{
+   forward_list<int>  f1;
+   f1.assign({1,2,3,4,5});
+
+   //f1.assign(4,45);  //45 45 45 45 
+
+   for(auto ele:f1)
+      cout<<ele<<" ";
+   cout<<endl;
+
+   f1.push_front(34);  //emplace_front in place insert no copy created
+   for(auto ele:f1)
+      cout<<ele<<" ";
+   
+   cout<<endl;
+   f1.pop_front();  
+   for(auto ele:f1)
+      cout<<ele<<" ";
+  
+  cout<<endl;
+  f1.insert_after(f1.begin(),77); //after the positon ****
+   for(auto ele:f1)
+      cout<<ele<<" ";
+
+  cout<<endl;
+  //f1.erase_after();//Position previous of the element to be removed in the form 
+  //of iterator   
+  f1.remove(77);
+  cout<<endl;
+
+     for(auto ele:f1)
+      cout<<ele<<" ";
+
+}
