@@ -1,0 +1,46 @@
+A C++ priority queue is a type of container adapter, specifically designed such that the first element of the queue is either the greatest or the smallest of all elements in the queue, and elements are in non-increasing or non-decreasing order (hence we can see that each element of the queue has a priority {fixed order}).
+
+In C++ STL, the top element is always the greatest by default. We can also change it to the smallest element at the top.
+Priority queues are built on the top of the max heap and use an array or vector as an internal structure. In simple terms,
+
+ STL Priority Queue is the implementation of Heap Data Structure***********.
+ 
+ 
+ #include<iostream>
+#include<queue>// imp
+
+using namespace std;
+
+
+int main()
+{
+    priority_queue<int> pq;   //creates max heap
+
+    pq.push(1);
+    pq.push(2);
+    pq.push(3);
+    pq.push(4);
+
+    while(!pq.empty())
+    {
+        cout<<pq.top()<<" ";
+        pq.pop();
+    }
+
+    //creating the min heap
+    cout<<endl<<endl;
+    priority_queue<int,vector<int>,greater<int>> minheap;
+
+    minheap.push(1);
+    minheap.push(2);
+    minheap.push(3);
+    minheap.push(4);
+    cout<<"size is "<<minheap.size()<<endl;
+
+    while(!minheap.empty())
+    {
+        cout<<minheap.top()<<" ";
+        minheap.pop();
+    }
+    return 0;
+}
